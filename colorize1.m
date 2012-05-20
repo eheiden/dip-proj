@@ -7,7 +7,7 @@ outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cat
 %for i = 1:length(inputs)
     % read in the input image
     %image = imread(inputs{i});
-    image = imread('river.jpg');
+    image = imread('tree.jpg');
     
     % you may want to crop out the black borders first
     
@@ -26,7 +26,7 @@ outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cat
     R = im2double(R);
     
     %percentage of the image to check for black/white borders
-    prct = .07;
+    prct = .08;
     B = crop_prct(B, prct);
     G = crop_prct(G, prct);
     R = crop_prct(R, prct);
@@ -34,35 +34,18 @@ outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cat
     % Align the images
     % Functions that might be useful to you for aligning the images include:
     % "circshift", "sum", and "imresize" (for multiscale)
-    %%%%%aG = align(G,B);
-    %%%%%aR = align(R,B);
-    aG = normxcorr2(B,G);
-    aR = normxcorr2(B,R);
-    
-    absG = abs(aG);
-    absR = abs(aR);
-    
-    [y1,x1] = find(absG == max(absG(:)));
-    maxy = y1;
-    maxx = x1;
-    
-    y1 = y1 - (size(B, 1) - 1)/2;
-    x1 = x1 - (size(B, 2) - 1)/2;
-    imshow(G);
-    hold on
-    plot(x1, y1, 'wo');
-    
-%    R = circshift(R, [11 3]);
- %   G = circshift(G, [5 2]);
 
-
+    %align the green channel to blue:
+    G = align1(G,B);
+    %align the red channel to blue:
+    R = align1(R,B);
 
     % create the color image
-    %imageRGB = cat(3, R, G, B);
-    %imshow(imageRGB);
-    
+    imageRGB = cat(3, R, G, B);
+    imshow(imageRGB);
+
     % save it
-    %imwrite(imageRGB, outputs{i});
+    imwrite(imageRGB, outputs{i});
 %end
     
     
