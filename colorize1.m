@@ -7,7 +7,7 @@ outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cat
 %for i = 1:length(inputs)
     % read in the input image
     %image = imread(inputs{i});
-    image = imread('tree.jpg');
+    image = imread('emir.tif');
     
     % you may want to crop out the black borders first
     
@@ -45,7 +45,8 @@ outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cat
     imshow(imageRGB);
 
     % save it
-    imwrite(imageRGB, outputs{i});
+    %imwrite(imageRGB, outputs{i});
+    
 %end
     
     
