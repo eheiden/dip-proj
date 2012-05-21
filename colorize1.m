@@ -4,10 +4,10 @@ clear all;
 inputs = {'trainCar.jpg', 'river.jpg', 'tree.jpg', 'emir.tif', 'cathedral.tif'};
 outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cathedralRGB.tif'};
 
-%for i = 1:length(inputs)
+for i = 1:length(inputs)
     % read in the input image
-    %image = imread(inputs{i});
-    image = imread('emir.tif');
+    image = imread(inputs{i});
+    %image = imread(input);
     
     % you may want to crop out the black borders first
     
@@ -31,22 +31,22 @@ outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cat
     G = crop_prct(G, prct);
     R = crop_prct(R, prct);
 
-    % Align the images
-    % Functions that might be useful to you for aligning the images include:
-    % "circshift", "sum", and "imresize" (for multiscale)
-
     %align the green channel to blue:
     G = align1(G,B);
     %align the red channel to blue:
     R = align1(R,B);
 
+    prct = .05;
+    B = crop_prct(B, prct);
+    G = crop_prct(G, prct);
+    R = crop_prct(R, prct);
+    
     % create the color image
     imageRGB = cat(3, R, G, B);
     imshow(imageRGB);
 
     % save it
-    %imwrite(imageRGB, outputs{i});
-    
-%end
+    imwrite(imageRGB, outputs{i});
+end
     
     
