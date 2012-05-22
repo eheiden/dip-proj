@@ -1,3 +1,6 @@
+% less functional colorizing scrip using the normalized 
+% cross-correlation technique developed first
+
 close all;
 clear all;
 
@@ -8,9 +11,7 @@ for i = 1:length(inputs)
     % read in the input image
     image = imread(inputs{i});
     %image = imread(input);
-    
-    % you may want to crop out the black borders first
-    
+        
     % compute the height of each part (just 1/3 of total)
     height = floor(size(image,1)/3);
     

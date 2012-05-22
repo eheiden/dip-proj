@@ -1,10 +1,13 @@
 function im_out = sat_adjust(im, pct)
-%color_histeq performs histogram equalization on a color image.
-%   Histogram equalization of a colored image achieved by
-% performing the equalization on the V (value) channel of the
-% HSV color space.  Returns an RGB image.
+%sat_adjust increases the saturation of an image by pct.
+%   sat_adjust uses the HSV color space to increase the
+% saturation of an image by pct.  For example, if the function
+% was called as: sat_adjust(img,.25), then the returned image's
+% saturation would be 25% closer to total saturation. (note: 
+% saturation levels exceeding 1 are clipped to 1). Returns 
+% an RGB image.
 
-if 0 < pct > 1
+if 0 > pct > 1
     error('color_histeq percentage weight must be between 0 and 1.')
 end
 

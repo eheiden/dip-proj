@@ -1,6 +1,10 @@
 function [img] = align1(img,template)
-%align FILL ME IN WITH WORDS
-%   Detailed explanation goes here
+%align align1 aligns img to template and returns the result
+%   align1 finds the normalized cross correlation
+% (using the normxcor2 function) and finds the shifted position
+% where correlation between the two images is the highest
+% If an image is large decimation is performed to speed
+% up calculations.
 
 rows = size(template,1);
 

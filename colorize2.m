@@ -1,3 +1,6 @@
+%more successful colorizing script which uses the sum of squared
+% differences
+
 close all;
 
 inputs = {'trainCar.jpg', 'river.jpg', 'tree.jpg', 'emir.tif', 'cathedral.tif'};

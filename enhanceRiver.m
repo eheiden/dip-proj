@@ -1,3 +1,4 @@
+%this script enhances riverRGB.jpg
 close all;
 
 img= imread('riverRGB.jpg');

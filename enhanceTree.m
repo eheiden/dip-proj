@@ -1,3 +1,4 @@
+%this script enhances tree.jpg
 close all;
 
 img= imread('treeRGB.jpg');

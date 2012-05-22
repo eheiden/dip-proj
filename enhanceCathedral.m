@@ -1,3 +1,5 @@
+%this script enhances cathedralRBG.tif
+
 close all;
 
 img= imread('cathedralRGB.tif');

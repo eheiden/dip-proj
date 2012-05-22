@@ -1,7 +1,13 @@
 function [img] = align2(img, template, window, crop_box)
 %align2 aligns img to template using the sum of squared differences
-%   Warning: Large images will take a long time to process.
-
+%   align2 aligns img to template using the sum of squared
+% differences.  window is the number of pixels to shift the
+% image in each direction to find alignment (note: for images
+% over 1000 pixels in height, window actually is increased to
+% window*5 as errors tend to be larger in larger images).
+% The 'crop_box' option is a special option for the emir.tif
+% file to enable a different subsection of the image to align
+% due to color channel difference difficulties.
 
 [rows cols] = size(template);
 

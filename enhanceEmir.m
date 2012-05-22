@@ -1,3 +1,5 @@
+%this script enhances emir.tif
+
 close all;
 
 img= imread('emirRGB.tif');

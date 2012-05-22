@@ -1,3 +1,4 @@
+%this script enhances trainCar.jpg
 close all;
 
 img= imread('trainCarRGB.jpg');
