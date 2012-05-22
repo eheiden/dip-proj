@@ -32,7 +32,6 @@ for i = 1:length(inputs)
     imshow(imageRGB); title('before alignment');
     
     if i == 4
-        i
         %align the green channel to blue:
         G = align2(G,B,20,1);
         %align the red channel to blue:
