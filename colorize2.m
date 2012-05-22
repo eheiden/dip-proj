@@ -1,16 +1,12 @@
 close all;
 
-dbstop if error
-
 inputs = {'trainCar.jpg', 'river.jpg', 'tree.jpg', 'emir.tif', 'cathedral.tif'};
 outputs = {'trainCarRGB.jpg', 'riverRGB.jpg', 'treeRGB.jpg', 'emirRGB.tif', 'cathedralRGB.tif'};
 
 for i = 1:length(inputs)
     % read in the input image
     image = imread(inputs{i});
-        
-    % you may want to crop out the black borders first
-    
+
     % compute the height of each part (just 1/3 of total)
     height = floor(size(image,1)/3);
     
@@ -31,11 +27,23 @@ for i = 1:length(inputs)
     G = crop_prct(G, prct);
     R = crop_prct(R, prct);
 
-    %align the green channel to blue:
-    G = align2(G,B,40);
-    %align the red channel to blue:
-    R = align2(R,B,40);
-
+    imageRGB = cat(3, R, G, B);
+    subplot(1,2,1);
+    imshow(imageRGB); title('before alignment');
+    
+    if i == 4
+        i
+        %align the green channel to blue:
+        G = align2(G,B,20,1);
+        %align the red channel to blue:
+        R = align2(R,B,20,1);
+    else
+        %align the green channel to blue:
+        G = align2(G,B,20,0);
+        %align the red channel to blue:
+        R = align2(R,B,20,0);
+    end
+    
     prct = .05;
     B = crop_prct(B, prct);
     G = crop_prct(G, prct);
@@ -43,7 +51,8 @@ for i = 1:length(inputs)
     
     % create the color image
     imageRGB = cat(3, R, G, B);
-    imshow(imageRGB);
+    subplot(1,2,2);
+    imshow(imageRGB); title('after alignment');
 
     % save it
     imwrite(imageRGB, outputs{i});
